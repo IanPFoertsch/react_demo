@@ -9,6 +9,10 @@ var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
 module.exports = {
   mode: 'development',
   entry: __dirname + '/app/index.js',
+  devServer: {
+    //this might have the be './build'
+    contentBase: './build'
+  },
   module: {
     rules: [
       {
