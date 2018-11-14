@@ -5,16 +5,21 @@ var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
   filename: 'index.html',
   inject: 'body'
 })
+// var ExtractTextPlugin = require('extract-text-webpack-plugin')
+// var extractCSS = new ExtractTextPlugin({ filename: 'css.bundle.css'})
 
 module.exports = {
   mode: 'development',
   entry: __dirname + '/app/index.js',
   devServer: {
-    //this might have the be './build'
     contentBase: './build'
   },
   module: {
     rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader','css-loader']
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -26,5 +31,7 @@ module.exports = {
     filename: 'transformed.js',
     path: __dirname + '/build'
   },
-  plugins: [HTMLWebpackPluginConfig]
+  plugins: [
+    HTMLWebpackPluginConfig,
+  ]
 };
